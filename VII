@@ -1,0 +1,174 @@
+
+d1 $ stack [
+fast 2 $ every 4 (superimpose ((0.125 ~>).(#gain " 1 0 0 0")))  $  s "KD*2" #n 2  #begin 0.0125 #rel 2 #shape 0.2 #hpf 70 #gain 1 #orbit 1,
+-- fast 2  $palindrome $ s "hh*8" #n 7 #legato 0.25 #gain " 0.8 0.95 0.8 0.8 0.8 0.95 0.8 0.8 " #hpf "4000 1000 3000 4000 4000 1000 3000 4000" #octave 7 #lpf 5300,
+ (0.125 ~>)$ s "[~OR]" #n 148 #begin 0.0125 #octave 3 #up 3 #legato 4 #gain 1.4 #room 0.4 #size 0.2 #orbit 2,
+ (0.25 <~)$ every 4 (#gain " 0 1.2")$ s " [~sine]*1 " #octave 2  #legato 1.5 #rel 0.75  #lpf 450 #gain 1,
+ every 4 (jux rev)$ slow 2 $ "~TDH ~TDH ~TDH*2 ~TDH" #n "20" #octave 5 #rel 0.5 #pan "0.5 0.5 0.5 0.5" #gain "0.8 0.9 0.7",
+ -- fast 2 $ every 4 rev$ s "TDA {TDA~TDA} TDA TDA" #n 43 #bpf "4000 6200 4004 3000" #att 0.125 #rel 0.75 #pan sine #gain "0.6 0.8 0.7 0.7",
+ s "[~TDH]*4" #n "~ ~ 95 ~" #octave "<4 5>" #rel 2 #pan "0.5 0.5 0.5 " #room "-0.2" #size 0.4 #orbit 8,
+s "sine" #gain 0
+]
+
+
+d2
+-- $ slow 2
+-- $(0.225 ~>)
+ $ s "OH" #n 33
+#octave 4
+-- #up 1
+-- #lpf 300
+#legato 6
+#up "<   -3 -3>"
+#att 2 #rel 3
+ #orbit 2 #room "-0.7" #size 0.8
+#gain 0.9
+
+
+
+d3
+$ fast 8
+$jux rev
+ $ weave 16 (pan sine )[((slow 4).(#octave 5).(#att 4).(#rel 4).(#room "-0.5").(#orbit 3))
+ -- $  slow 2
+$ s "OH OH OH OH"
+#up "4 "
+#crush 8
+#hpf "<4400 5200 5800 6000>"
+#speed 2.242
+#gain 0.45
+  #octave 5
+   #n 48
+#lpf 5800]
+
+
+
+d4
+$ every 2 (0.3125 ~>)
+$slow 4
+-- $every 2 (#bpf "<600 1200 400 800>")
+$weave 16 ((pan (cosine)))[
+palindrome
+-- $ jux (rev)
+$every 4 ((rev).(#coarse "2 4 6 8").(#gain 0.75))
+$  s "MM*8"
+#up 4
+#att 3
+#rel 4
+#octave "[4]"
+#att "0.25"
+#lpf "600 400 1400 400 400 400 1200 600"
+#lpq 0.02
+-- #lpf 200
+-- #bpf 200
+#hpf "120 "
+-- #hpq 0.025
+-- #delay "<0.25 0.5>" #delayt "0.25" #delayfb ((0.5))
+#gain 0.8
+ #n 6
+]
+ #room "-0.6" #size 0.55 #orbit 5
+
+--- einspielen im wechsel mit dem vorherigen teil
+d5 $ (0.6 ~>)$  slow 2  $ s "MM " #n 9 #gain 0.96 #speed 0.98 #lpf 253 #lpq 0.2
+#att 3 #rel 2 #crush "< 8 8 6  6 5 5>"  #room "0.1" #size 0.25 #orbit "<3 3>"
+
+
+
+ d6
+ $ stack [echo 0.75 $(0.125 <~)$ jux rev $ s "OR:233/2" #att 2 #rel 1 #octave 4 #hpf (3320/(5/4)) #hpq "0" #lpf 3200 #lpq 0 #gain 0.9  #room "0.1" #size "0.2" #orbit 5,
+  -- echo 1.25 $(0.125 ~>)$ s "OR:233" #up "12" #att 2 #rel 1 #octave 5 #hpf 664 #gain 1.2 #room "-0.1" #size "-0.2" #orbit 6,
+s "sine" #gain 0]
+
+d7
+$(0.125 ~>)
+$ slow 4
+-- $echo 1.5
+$ s "OH" #n 5
+#att 8
+#rel 8
+---0 und 4 wechseln
+#up " <  4>"
+-- #speed 0.982
+ -- #begin 0.08
+ -- #delay 0.2 #delayt 0.5 #delayfb 0.15
+-- #begin 0.15
+-- #begin 0.639
+-- #hpf 750
+#lpf 220
+-- #lpq 0.25
+-- #hpq 0.25
+-- #end 0.157
+-- #cut 1
+ #gain 1.1 #room "0.4" #size 0.6 #orbit 4
+
+
+
+
+
+do
+  d7 silence
+  d1 $ stack [
+    -- fast 2 $ every 4 (superimpose ((0.125 ~>).(#gain " 1 0 0 0")))  $  s "KD*2" #n 2  #begin 0.0125 #rel 2 #shape 0.2 #hpf 70 #gain 1 #orbit 1,
+    -- fast 2  $palindrome $ s "hh*8" #n 7 #legato 0.25 #gain " 0.8 0.95 0.8 0.8 0.8 0.95 0.8 0.8 " #hpf "4000 1000 3000 4000 4000 1000 3000 4000" #octave 7 #lpf 5300,
+     -- (0.125 ~>)$ s "[~OR]" #n 148 #begin 0.0125 #octave 3 #up 3 #legato 4 #gain 1.4 #room 0.4 #size 0.2 #orbit 2,
+     (0.25 <~)$ every 4 (#gain " 0 1.2")$ s " [~sine]*1 " #octave 2  #legato 1.5 #rel 0.75  #lpf 450 #gain 1,
+     fast 2 $ every 4 rev$ s "TDA {TDA~TDA} TDA TDA" #n 43 #bpf "4000 6200 4004 3000" #att 0.125 #rel 0.75 #pan sine #gain "0.6 0.8 0.7 0.7",
+     every 4 (jux rev)$ slow 2 $ "~TDH ~TDH ~TDH*2 ~TDH" #n "20" #octave 5 #rel 0.5 #pan "0.5 0.5 0.5 0.5" #gain "0.8 0.9 0.7",
+     s "[~TDH]*4" #n "~ ~ 95 ~" #octave "<4 5>" #rel 2 #pan "0.5 0.5 0.5 " #room "-0.2" #size 0.4 #orbit 3,
+    s "sine" #gain 0
+    ]
+  d4
+      $ every 2 (0.3125 ~>)
+      $slow 4
+      -- $every 2 (#bpf "<600 1200 400 800>")
+      $weave 16 ((pan (cosine)))[
+      palindrome
+      -- $ jux (rev)
+      $every 4 ((rev).(#coarse "2 4 6 8").(#gain 0.75))
+      $  s "MM*8"
+      #up 4
+      #att 3
+      #rel 4
+      #octave "[4]"
+      #att "0.25"
+      #lpq 0.02
+      #lpf "600 400 1400 400 400 400 1200 600"
+      -- #lpf 200
+      -- #bpf 200
+      -- #hpf "180 "
+      -- #hpq 0.025
+      -- #delay "<0.25 0.5>" #delayt "0.25" #delayfb ((0.5))
+      #gain 0.8
+       #n 6
+      ]
+       #room "-0.6" #size 0.55 #orbit 5
+
+d9 $ stack [slow 4
+        -- $ (0.125 ~>)
+         $ every 2 (#gain 0.6) $weave 3 (pan isaw)[iter 2 $  s "MM*4 MM*2 MM*2 MM" #up "4 -1 0 -1 4  "
+        -- #cut "1"
+        #legato "<1.5 1.25 1.25 1.25>"
+       -- #n (chooseBy "0.75 0.25" [65, 72])
+       #n 72
+        #shape " 0.1" #room "-0.1 ..-0.4"
+       #size 0.8
+        #orbit 3
+        #accelerate "0 0 -0.125 0 0 0.125 0"
+       #gain (choose[1, 0.8, 0.9])
+       #begin "0.075 0.075 0.25 0.075"
+       #hpf 1100 #lpf 2200]
+,
+slow 1.5 $ (0.35 ~>)  $ every 2 (#gain 0.6) $weave 3 (pan isaw)[iter 4 $  s "MM*4 MM*2 MM*2 MM" #up "1  11 9 7 "
+        #cut 1
+       #n (chooseBy "0.75 0.25" [30, 28]) #shape " 0.1" #room "-0.1 ..-0.4"
+       #size 0.4
+        #orbit 5
+        #att 0.75 #rel 3
+        #accelerate "0 0 -0.125 0 0 0.125 0"
+       #gain (choose[1, 0.8, 0.9])
+       #begin "0.075 0.075 0.15 0.075"
+       #hpf 280 #lpf 2800]
+]
+
+hush
