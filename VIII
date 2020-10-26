@@ -1,0 +1,114 @@
+setcps 0.5
+
+
+d4
+-- $slow 2
+-- $ every 1 (0.125 <~)
+$every 1 (0.325 ~>)
+$ s "KD*2" #att "1.25 1.5" #rel 2 #n 2 #begin 0.025 #bpf 80 #lpf (59*((4/5)^2)) #lpq 0.3 #hpf 59 #hpq 0.2 #gain 0.4 #orbit 1
+
+d4 silence
+hush
+
+d1
+$(0.125 <~)
+$ slow 3$ every 2 ( (#att 3).(#rel 6 ).(#gain 1.3)) $ s "OR:58" #octave 4 #gain 1.05
+#speed 0.97 #lpf 250   #orbit 1
+
+d4$ (0.125 <~) $ stack [
+-- weave 16 (pan sine ) [slow 2 $ s "~{OR~OR}~ OR*2" #n 59 #up "~ [9 9] ~ [7 9]"    #bpf 1200 #room "0.1" #size 0.4 #orbit 2 #gain 0.8],
+("<0.015 0.0125 0.025>" ~>)$
+ slow 2$ echo 0.005$ every 2 ((#delay 0.5).( #delayt 0.75).(#delayfb 0.5)) $ s "~ {~~ OR} ~ ~"  #n 59 #up "[19]" #bpf 700 #room "0.02" #gain 0.55 #pan 0.8 #size 0.08 #orbit 3
+]
+
+d5 silence
+
+d5$ (0.125 <~) $ stack [
+slow 0.125 $ s "~{OR~OR}~ OR*2" #n 147 #crush 10
+#legato 6 #pan "<0.5 0.5 0.5 0.5 0.6 0.8 0.6 0.5 0.5 0.5 0.5 0.5 0.4 0.3 0.5 0.5 >"
+#up "~ [8 7] ~ [7 8]"
+#up "-1"
+#att "0.075 0.125 0.075"
+#bpf 2600 #room "-0.2" #size 0.5 #orbit 4 #gain 0.65,
+-- ("<0.015 0.0125 0.025>" ~>)$ slow 2$ echo 0.005$ every 2 ((#delay 0.5).( #delayt 0.75).(#delayfb 0.5)) $ s "~ {~~ OR} ~ ~"  #n 59 #up "[19]" #bpf 700 #room "0.02" #gain 0.6 #pan 0.9 #size 0.08 #orbit 3,
+s "sine" #gain 0
+]
+
+d6
+$ (0.3125 <~)
+$ slow 0.25 $ s "OR*8" #n 147
+#crush 9
+#att "0.075 0.125 0.075"
+#legato 4
+#pan "<0.5 0.5 0.5 0.5 0.6 0.8 0.6 0.5 0.5 0.5 0.5 0.5 0.4 0.3 0.5 0.5 >"
+-- #up "~ [7 8] ~ [8 7]"
+#pan cosine*4
+#rel 0.25
+#up "2"
+#lpf 5102 #lpq 0.2
+#bpf " 3400"
+#bpq 1.2
+ #room "-0.8" #size 0.5 #orbit 4 #gain 0.475
+
+d7 silence
+
+hush
+
+d7
+-- $ jux rev
+$ weave 16 (pan sine)[
+  plyWith 3 (+|hpf 200 )
+$iter 2
+$ slow  4
+-- $palindrome
+ $ s "OR" #up "[-12, -19,-17,]"  #hpf 220 #lpq 0.2  #lpf "1560"
+   #gain 0.625  #att 2 #rel 3 #n 60
+  #room "-0.25 "#size 0.5 #orbit 2
+]
+
+
+
+d8
+-- $ jux rev
+$ weave 7 (pan sine)[
+  plyWith 3 (+|hpf 200 )
+$iter 2
+$ slow  2
+-- $palindrome
+ $ s "TDF" #up "[-12, -19,-17,]"  #hpf 420 #lpq 0.5  #lpf "2560"
+   #gain 0.4 #att 3 #rel 4
+   #n 42 #legato 8
+  #room "-0.25 "#size 0.5 #orbit 2
+]
+
+d7 silence
+
+d9 $ (0.175 <~)
+$slow 6
+-- $ (0.05 <~)
+$ s "MM"
+ #n 33
+ #octave 6 #speed 1 #up 4
+#accelerate "-0.012"
+#gain 0.5
+#att 4 #decay 2.5 #rel 8
+#room "<-0.8 -0.5 -0.8 0.1 -0.5 > " #size 0.7 #orbit 7
+
+
+d9 $ (0.175 <~)
+$slow 6
+-- $ (0.05 <~)
+$ s "MM*4"
+ #n 33
+ #octave 6 #speed 1 #up "4 2 1 -1"
+#accelerate "-0.012"
+#gain 0.5
+#att 4 #decay 2.5 #rel 8
+#room "<-0.8 -0.5 -0.8 0.1 -0.5 > " #size 0.7 #orbit 7
+
+
+
+hush
+
+d1 silence
+hush
